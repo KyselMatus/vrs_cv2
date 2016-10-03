@@ -82,15 +82,23 @@ int main(void)
 
 
 
-
-
-
-
   /* Infinite loop */
   while (1)
   {
 	i++;
 
+	GPIOA->ODR |= (uint16_t)(1 << 5); 				//zapiname ledku
+	GPIOA->ODR &= ~(uint16_t)(1 << 5); 				//vypiname ledku
+
+
+
+	GPIOA->BSRRL |= ((uint16_t)(1<<5));				//zapiname ledku
+	GPIOA->BSRRL &= ~((uint16_t)(1<<5));            //vypiname ledku
+
+	//
+
+	 GPIOA->ODR ^= (1<<5);							// prepínanie
+	 GPIOA->ODR ^= (1<<5);
   }
   return 0;
 }
