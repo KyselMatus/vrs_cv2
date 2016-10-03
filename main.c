@@ -129,10 +129,18 @@ int main(void)
 	 	button = 0;
 */
 	  // úloha 3
-
 	  int i = 0;
+/*
+
 	  	  for(i; i<5000; i++) {}
 	  	  	  GPIOA->ODR ^= (1<<5);   // ledka by mala blika
+
+	  	  	  */
+
+	 if (GPIOC->IDR == 0b00000000000000000010000000000000)	// pozorujeme tlaèidlo na ledke
+		 GPIOA->ODR |= (1<<5);
+	 else
+		 GPIOA->ODR &= ~(1<<5);
   }
   return 0;
 }
