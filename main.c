@@ -135,12 +135,27 @@ int main(void)
 	  	  for(i; i<5000; i++) {}
 	  	  	  GPIOA->ODR ^= (1<<5);   // ledka by mala blika
 
-	  	  	  */
 
+	  	  //uloha 3.2
 	 if (GPIOC->IDR == 0b00000000000000000010000000000000)	// pozorujeme tlaèidlo na ledke
 		 GPIOA->ODR |= (1<<5);
 	 else
 		 GPIOA->ODR &= ~(1<<5);
+	 */
+
+	 // úloha 3.3
+	 if (GPIOC->IDR == 0b00000000000000000010000000000000)	// pozorujeme èi je stlaèene tlaèidlo (stavy z 0 - 1)
+	  {
+	  for(i; i<10; i++){} 												// ošèetrenie prechodových dejov poèas stlaèenia
+	  	  while (GPIOC->IDR == 0b00000000000000000010000000000000) {} 	// kým neuvolníme tlaèislo (stav z 1 - 0)
+	  	  for(i; i<10; i++){} 											// osetrenie prechodovych dejov pocas uvolnenia tlaèidla
+	  	  	  GPIOA->ODR ^= (1<<5); 									// po uvolnení tlaèidla - zmena stavu LEDky (svieti/nesvieti)
+	  	}
+
+
+
+
+
   }
   return 0;
 }
