@@ -83,14 +83,23 @@ int main(void)
 
    //================== Uloha 2===================================================
     RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOC,ENABLE);  //zapnutie periferie GPIOC
-// všetko je predvolene nastavene na 00 ale pre istotu :
+  /*
+
+   // všetko je predvolene nastavene na 00 ale pre istotu :
     GPIOC->MODER |=(0b00)<<(13*2);              //nastavili sme na dany pin hodnotu input
     GPIOC->OTYPER &= ~((uint32_t)(1<<13));		// pretypujeme
     GPIOC->PUPDR |= (0b00)<<(13*2);				// nastavili sme pull up pull down na pozíciu 26 (0b00)
 
     GPIOC->ODR |= 0b00000000000000000000000000000000;
 
+*/
 
+
+    //================== Uloha 3===================================================
+   GPIOA->MODER |= (0b01)<<(5*2);  						//nastavili sme na dany pin hodnotu input
+   GPIOA->OTYPER &= ~((uint32_t)(1<<5));
+   GPIOA->PUPDR |= (0b01)<<(5*2);  						 // nastavili sme pull up pull down na pozíciu 10 (0b10)
+   GPIOA->OSPEEDR |= (0b00)<<(5*2); 				// dali sme rýchlos na low speed
 
 
 
@@ -110,7 +119,7 @@ int main(void)
 	//
 
 	 GPIOA->ODR ^= (1<<5);							// prepínanie
-	 GPIOA->ODR ^= (1<<5);					*/
+	 GPIOA->ODR ^= (1<<5);
 
 	  //Úloha 2
 	int button;
@@ -118,7 +127,12 @@ int main(void)
 		button = 1;
 	 else
 	 	button = 0;
+*/
+	  // úloha 3
 
+	  int i = 0;
+	  	  for(i; i<5000; i++) {}
+	  	  	  GPIOA->ODR ^= (1<<5);   // ledka by mala blika
   }
   return 0;
 }
