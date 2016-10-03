@@ -83,7 +83,7 @@ int main(void)
 
    //================== Uloha 2===================================================
     RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOC,ENABLE);  //zapnutie periferie GPIOC
-
+// všetko je predvolene nastavene na 00 ale pre istotu :
     GPIOC->MODER |=(0b00)<<(13*2);              //nastavili sme na dany pin hodnotu input
     GPIOC->OTYPER &= ~((uint32_t)(1<<13));		// pretypujeme
     GPIOC->PUPDR |= (0b00)<<(13*2);				// nastavili sme pull up pull down na pozíciu 26 (0b00)
@@ -111,6 +111,14 @@ int main(void)
 
 	 GPIOA->ODR ^= (1<<5);							// prepínanie
 	 GPIOA->ODR ^= (1<<5);					*/
+
+	  //Úloha 2
+	int button;
+	 if (GPIOC->IDR == 0b00000000000000000010000000000000)
+		button = 1;
+	 else
+	 	button = 0;
+
   }
   return 0;
 }
